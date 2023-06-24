@@ -1,18 +1,20 @@
 # gdrive-sync
 Simple python script to sync the files using Google Drive.
 I thought It would be great to have a sync system that downloads the file to the designated file path.
+Works for Windows/Linux/Mac.
 
 ### How to use it
 
-First, You need 2 things to start:
+First, You need 3 things to start:
 1. Google Cloud API credentials
 2. Folder called `Sync` in your Google Drive
-3. new config file for gdrive-sync
+3. new config file for `gdrive-sync`
 
 ### 1. Get Google Cloud API Credentials
 1. Login to the Google, and go to: https://console.cloud.google.com/apis/credentials
 2. Follow this article to download your `credentials.json`: https://developers.google.com/drive/api/quickstart/python
 3. Put your `credentials.json` into `~/.config/gdrive-sync/
+   - If you are using Windows, Use `AppData/Roadming/gdrive-sync/` instead.
 
 ### 2. Create Folder called `Sync` in your Google Drive
 1. Login to the Google, and go to your drive.
@@ -21,7 +23,8 @@ First, You need 2 things to start:
 
 ### 3. Create config file
 1. On your machine, go to `$HOME` and make a folder called `gdrive-sync` and also make a config file.
-   - config.json
+   - for Linux, `~/.config/gdrive-sync/config.json`
+   - for Windows, `AppData/Roadming/gdrive-sync/config.json`
 2. config.json looks like this:
 ```
 {
