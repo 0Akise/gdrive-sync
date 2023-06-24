@@ -48,8 +48,8 @@ of course, replace the paths to the one you want to sync.
     - and for `relative_path2`, It will be downloaded on `absolute_path2`
     - If you `push`, file/folder on `absolute_path + relative_path` will be uploaded to `relative_path` in the drive.
 
-That's pretty much it. BE SURE TO MATCH THE INDEX between `DRIVE` and `LOCAL`.
-WARN: If you use it for the first time, upload the files you want to sync first on the drive.
+- That's pretty much it. BE SURE TO MATCH THE INDEX between `DRIVE` and `LOCAL`.
+- WARN: If you use it for the first time, upload the files you want to sync first on the drive.
 
 # 日本語
 個人的にパスごと同期できるものがあるといいな～と思って作りました。
