@@ -19,9 +19,13 @@ from googleapiclient.http import MediaFileUpload
 os_name = platform.system()
 
 if os_name == 'Windows':
-    config_path = os.path.join(os.getenv('APPDATA'), 'gdrive-cli', 'config.json')
+    config_dir = os.path.join(os.getenv('APPDATA'), 'gdrive-sync')
 else:
-    config_path = os.path.expanduser('~/.config/gdrive-cli/config.json')
+    config_dir = os.path.expanduser('~/.config/gdrive-sync/')
+
+config_path = os.path.join(config_dir, 'config.json')
+token_path = os.path.join(config_dir, 'token.json')
+creds_path = os.path.join(config_dir, 'credentials.json')
 
 with open(config_path, 'r') as file:
     config = json.load(file)
@@ -102,23 +106,23 @@ def get_file_path(service, file):
 
 def main():
     creds = None
-
+    
     parser = argparse.ArgumentParser()
     parser.add_argument("--pull", action="store_true")
     parser.add_argument("--push", action="store_true")
     
     args = parser.parse_args()
 
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if os.path.exists(token_path):
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(creds_path, SCOPES)
             creds = flow.run_local_server(port=0)
 
-        with open('token.json', 'w') as token:
+        with open(token_path, 'w') as token:
             token.write(creds.to_json())
 
     try:
